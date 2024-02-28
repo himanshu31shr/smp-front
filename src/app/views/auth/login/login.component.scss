@@ -1,0 +1,22 @@
+/* login.component.css */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+mat-card {
+    width: 25vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // width: 300px;
+}
+mat-card-header {
+    text-align: center;
+}
+
+mat-card-actions {
+    justify-content: center;
+}

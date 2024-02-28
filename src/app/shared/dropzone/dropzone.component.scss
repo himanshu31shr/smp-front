@@ -1,0 +1,17 @@
+::ng-deep .my-dropzone {
+  cursor: pointer;
+  text-align: center;
+  background: platinum;
+  border: 1px dotted grey;
+  height: 100% !important;
+  width: 100% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap !important;
+  background-color: rgba(128, 128, 128, 0.154);
+}
+
+.dragover>.my-dropzone {
+  border-width: 2px;
+}

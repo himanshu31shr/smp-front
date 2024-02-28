@@ -1,0 +1,83 @@
+<mat-toolbar
+    style="margin-bottom: 1rem;text-transform: uppercase;display: flex;justify-content: space-between; align-items: center">
+    <span *ngIf="!edit">
+        {{album?.name}}
+    </span>
+    <div *ngIf="!edit">
+        <span matRipple class="button" (click)="createShareLink()">
+            <mat-icon>link</mat-icon>
+        </span>
+        <span matRipple class="button" [matMenuTriggerFor]="menu"><mat-icon>settings</mat-icon></span>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="deleteAlbum()">
+                <mat-icon>delete</mat-icon> Remove
+            </button>
+            <button mat-menu-item (click)="toggleEdit()">
+                <mat-icon>edit</mat-icon> Edit
+            </button>
+        </mat-menu>
+    </div>
+    <mat-form-field *ngIf="edit" appearance="outline" style="width: 70%;">
+        <input matInput placeholder="Album name" [formControl]="name" required>
+    </mat-form-field>
+    <div *ngIf="edit">
+        <mat-icon class="button" (click)="update()">check</mat-icon>
+        <mat-icon class="button" (click)="toggleEdit()">cancel</mat-icon>
+    </div>
+</mat-toolbar>
+<mat-divider></mat-divider>
+
+<mat-grid-list cols="25" gutterSize="5" dir="rtl" style="margin: 0.5rem 0;">
+    <mat-grid-tile *ngFor="let pep of peps" (click)="filter(pep)">
+        <div style="position: relative;height: 100%;width: 50px; border-radius: 100%;overflow: hidden;"
+            *ngIf="pep.image_path">
+            <img [ngSrc]="pep.image_path" [ngClass]="{
+                'active': pep.isSelected
+            }" [alt]="album?.name" placeholder="https://placehold.co/100x100/grey/white?text=No images'" fill />
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<div style=" color: #000;display: flex;justify-content: center;" (click)="toggleFull()" *ngIf="people!.length > 25">
+    <mat-icon *ngIf="showFull">expand_less</mat-icon>
+    <mat-icon *ngIf="!showFull">expand_more</mat-icon>
+</div>
+<mat-divider></mat-divider>
+
+<mat-grid-list cols="40" gutterSize="5" dir="rtl" style="margin: 0.5rem 0;" *ngIf="selected.length">
+    <mat-grid-tile (click)="clearFilters()">
+        <div class="people__small empty">
+            <mat-icon>filter_alt_off</mat-icon>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile *ngFor="let pep of selected" (click)="filter(pep)">
+        <div class="people__small" *ngIf="pep.image_path">
+            <img [ngSrc]="pep.image_path" [ngClass]="{
+                'active': pep.isSelected
+            }" [alt]="album?.name" placeholder="https://placehold.co/100x100/grey/white?text=No images'" fill />
+            <mat-icon class="showRemove">close</mat-icon>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>
+<mat-divider></mat-divider>
+
+<mat-grid-list cols="7" style="width: 100%; margin-top: 1rem;" gutterSize="10">
+    <mat-grid-tile>
+        <mat-card
+            style="width: 100%;padding: 0;height: 100%; justify-content: center;align-items: center;display: flex; background-color: grey;"
+            (click)="openUpload()">
+            <p style="font-size: 2rem;margin:0; color: white;">
+                +
+            </p>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile *ngFor="let photo of photos">
+        <mat-card style="width: 100%;height:100%; padding:0;" (click)="open(photo)" *ngIf="photo?.signed_image">
+            <div style="position: relative !important; height: 100%; width: 100%;">
+                <img mat-card-image [ngSrc]="photo?.thumb!" [alt]="album?.name" (error)="handleError(photo)"
+                    placeholder="https://placehold.co/100x100/grey/white?text=No images'" fill>
+            </div>
+        </mat-card>
+    </mat-grid-tile>
+
+</mat-grid-list>

@@ -1,0 +1,23 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Create Share Link</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="permissionsForm">
+            <mat-radio-group formControlName="permissionType">
+                <mat-radio-button value="full">Full Permissions</mat-radio-button>
+                <mat-radio-button value="partial">Partial Permissions</mat-radio-button>
+            </mat-radio-group>
+        </form>
+
+        <mat-list role="list">
+            <mat-list-item role="listitem" *ngFor="let link of links"  class="link-row">
+                <mat-icon matListItemIcon>link</mat-icon>
+                <a target="_blank" href="/share?code={{link?.code}}" matListItemTitle>{{link.access_type == 0 ? 'Partial' : 'Full'}} Access</a>
+            </mat-list-item>
+        </mat-list>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="submitForm()">Submit</button>
+    </mat-card-actions>
+</mat-card>

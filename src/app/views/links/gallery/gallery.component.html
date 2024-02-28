@@ -1,0 +1,24 @@
+<mat-toolbar color="primary" *ngIf="album">
+    <span>{{album!.name || ''}}</span>
+    <span class="example-spacer"></span>
+</mat-toolbar>
+<div class="container">
+
+    <mat-card *ngIf="!album">
+        <mat-card-content>
+            <p *ngIf="!invalidAlbum">Scan your face to get started</p>
+            <p *ngIf="invalidAlbum">This is not a valid sharable link!</p>
+        </mat-card-content>
+    </mat-card>
+    <mat-grid-list cols="7" style="width: 100%;" gutterSize="10" *ngIf="album">
+        <mat-grid-tile *ngFor="let photo of album?.photos">
+            <mat-card style="width: 100%;height:100%; padding:0;" (click)="open(photo)" *ngIf="photo?.signed_image">
+                <div style="position: relative !important; height: 100%; width: 100%;">
+                    <img mat-card-image [ngSrc]="photo?.thumb!" [alt]="album!.name" (error)="handleError(photo)"
+                        placeholder="https://placehold.co/100x100/grey/white?text=No images'" fill>
+                </div>
+            </mat-card>
+        </mat-grid-tile>
+    
+    </mat-grid-list>
+</div>

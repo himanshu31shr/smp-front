@@ -1,0 +1,23 @@
+<mat-card style="display: flex;flex-direction: row;" (mousemove)="showElement()" (mouseleave)="hideElement()">
+    <mat-icon style="position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    color: #fff;
+    cursor: pointer;
+}" (click)="close()">close</mat-icon>
+    <img [src]="data.photo.signed_image" class="hover" alt="" />
+
+    <div class="poeple">
+        <span class="people__item" *ngFor="let pe of data.photo?.people">
+            <img matListItemIcon [src]="pe?.image_path" alt="" style="border-radius: 100%;width: 40px;height: 40px;">
+        </span>
+    </div>
+
+    <span class="arrow arrow__left" (click)="prev()" *ngIf="isElementVisible">
+        <mat-icon>arrow_left</mat-icon>
+    </span>
+    <span class="arrow arrow__right" (click)="next()" *ngIf="isElementVisible">
+        <mat-icon>arrow_right</mat-icon>
+    </span>
+</mat-card>

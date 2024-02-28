@@ -1,0 +1,35 @@
+<mat-toolbar color="">
+    <span style="text-transform: uppercase;">Albums</span>
+</mat-toolbar>
+<mat-grid-list cols="6" style="width: 100%;height: 100%; margin-top: 1rem;" gutterSize="10">
+    <mat-grid-tile>
+        <mat-card
+            style="width: 100%;padding: 0; height: 100%; justify-content: center;align-items: center;display: flex; background-color: grey;"
+            (click)="createAlbum()">
+            <p style="font-size: 2rem;margin:0; color: white;">
+                +
+            </p>
+        </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile *ngFor="let album of albums" (click)="showDetails(album)">
+        <mat-card class="example-card" style="width: 100%;padding: 0;">
+            <mat-grid-list mat-card-image cols="2" [gutterSize]="'2'">
+                <mat-grid-tile *ngIf="!album?.photos?.length">
+                    <img [src]="'https://placehold.co/100x100/grey/white?text=No images'" alt="" class="sr"
+                        height="100%">
+                </mat-grid-tile>
+
+                <ng-container *ngIf="album?.photos?.length">
+                    <mat-grid-tile *ngFor="let photo of album?.photos| slice:-4">
+                        <img [src]="photo?.thumb" alt="" class="sr" height="100%" (error)="handleError(photo)">
+                    </mat-grid-tile>
+                </ng-container>
+            </mat-grid-list>
+            <mat-card-content>
+                <h3>{{album?.name}}</h3>
+            </mat-card-content>
+        </mat-card>
+
+    </mat-grid-tile>
+</mat-grid-list>

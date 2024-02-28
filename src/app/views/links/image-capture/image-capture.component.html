@@ -1,0 +1,14 @@
+<div style="display: flex;flex-direction: column;">
+    <ng-container *ngIf="!image" >
+        <webcam #webcam (initError)="handleInitError($event)" (imageCapture)="handleCapture($event)"
+            [captureImageData]="true" [trigger]="triggerObservable"></webcam>
+
+        <button mat-flat-button color="primary"(click)="triggerSnapshot();">Take A Snapshot</button>
+    </ng-container>
+    <img [src]="image.imageAsDataUrl" *ngIf="image" alt="">
+    <div *ngIf="image" style="display: flex;flex-direction: row; gutterSize: 10px;">
+        <button mat-flat-button color="primary" (click)="match();">Confirm</button>
+        <button mat-flat-button color="primary" (click)="image = undefined">Retake</button>
+    </div>
+
+</div>

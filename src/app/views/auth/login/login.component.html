@@ -1,0 +1,36 @@
+<div class="container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Get Started</mat-card-title>
+        </mat-card-header>
+        <br>
+        <mat-card-content>
+            <mat-form-field appearance="outline" floatLabel="always">
+                <mat-label>Your email</mat-label>
+                <input matInput placeholder="Your Email" [(ngModel)]="username" />
+                <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+            <br>
+            <mat-form-field *ngIf="register" appearance="outline" floatLabel="always">>
+                <mat-label >Your name</mat-label>
+                <input matInput type="text" placeholder="Your name" [(ngModel)]="name">
+                <mat-icon matSuffix>envelope</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" floatLabel="always">
+                <mat-label >Password</mat-label>
+                <input matInput type="password" placeholder="Password" [(ngModel)]="password">
+                <mat-icon matSuffix>password</mat-icon>
+
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-flat-button color="primary" (click)="onSubmit()">{{
+                    register ? 'Register' : 'Login'
+                }}</button>
+        </mat-card-actions>
+        <p *ngIf="register" (click)="switchForm(false)">Login?</p>
+        <p *ngIf="!register" (click)="switchForm(true)">New here?</p>
+    
+    </mat-card>
+
+</div>

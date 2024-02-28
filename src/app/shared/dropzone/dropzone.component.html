@@ -1,0 +1,19 @@
+<mat-card style="height: 90vh; width: 90vw;">
+    <mat-card-header>
+        <p>
+            Upload Files
+        </p>
+    </mat-card-header>
+
+        <ngx-dropzone (change)="onSelect($event)" class="my-dropzone" accept="image/*" [expandable]="false" [processDirectoryDrop]="true">
+            <ngx-dropzone-label>Drop your files here!</ngx-dropzone-label>
+            <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+            </ngx-dropzone-preview>
+        </ngx-dropzone>
+
+    <mat-card-actions>
+        <mat-spinner *ngIf="spin" diameter="40"></mat-spinner>
+        <button mat-button color="primary" *ngIf="!spin && files.length" (click)="upload()">Upload {{files!.length}} file(s)</button>
+    </mat-card-actions>
+</mat-card>
