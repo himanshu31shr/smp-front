@@ -41,9 +41,10 @@ export class HeaderInterceptor implements HttpInterceptor {
         const started = Date.now();
         let ok: string;
         if (!httpRequest.url.includes('assets')) {
+            console.log(environment, httpRequest.url)
             return next.handle(
                 httpRequest.clone({
-                    url: httpRequest.url.includes('match') ? '' : environment.api_url + httpRequest.url,
+                    url: httpRequest.url.includes('match') ? environment.service_url : environment.api_url + httpRequest.url,
                     setHeaders: {
                         Authorization: `Bearer ${this._auth.getToken()}`
                     }
@@ -75,7 +76,7 @@ export class HeaderInterceptor implements HttpInterceptor {
                 finalize(() => {
                     const elapsed = Date.now() - started;
                     const msg = `${httpRequest.method} "${httpRequest.urlWithParams}" ${ok} in ${elapsed} ms.`;
-                    console.error(msg)
+                    console.info(msg)
                 })
             );;
         }

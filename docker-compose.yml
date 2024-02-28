@@ -1,0 +1,32 @@
+name: smp-frontend
+version: "3.7"
+
+services:
+  angular-builder:
+    image: smp-angular
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    networks:
+      - angular-build-network
+    volumes:
+      - ./outputs:/project/outputs
+    command: >
+      sh -c "npm run build && rm -rf outputs/* &&  cp dist/* outputs/"
+
+  angular-proxy:
+    image: nginx:latest
+    restart: unless-stopped
+    ports:
+      - "4200:80"
+    volumes:
+      - ./.scripts:/etc/nginx
+      - ./outputs:/project/dist
+    depends_on:
+      - angular-builder
+    networks:
+      - angular-build-network
+
+networks:
+  angular-build-network:
+    driver: bridge

@@ -1,0 +1,10 @@
+node_modules
+npm-debug.log
+.vscode
+.github
+coverage
+.codeclimate.yml
+public
+dist
+.angular
+outputs
