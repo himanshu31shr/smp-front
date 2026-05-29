@@ -1,27 +1,45 @@
-# Front
+# 📈 Stock Market Portfolio — Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.12.
+<div align="center">
 
-## Development server
+![Angular](https://img.shields.io/badge/Angular-DD0031?style=flat-square&logo=angular&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+**Angular-based frontend for a real-time stock market portfolio tracking platform.**
 
-## Code scaffolding
+</div>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## 🎯 About
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+The frontend client for the **Stock Market Portfolio (SMP)** platform — a microservices-based system for tracking stock portfolios, analyzing market trends, and managing investments.
 
-## Running unit tests
+Part of a **3-service architecture**:
+- 📱 **[smp-front](https://github.com/himanshu31shr/smp-front)** — Angular frontend (this repo)
+- 🖥️ **[smp-back](https://github.com/himanshu31shr/smp-back)** — Node.js REST API
+- ⚡ **[smp-queue](https://github.com/himanshu31shr/smp-queue)** — Python queue worker for async processing
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## ✨ Features
 
-## Running end-to-end tests
+- 📊 Real-time portfolio dashboard
+- 📈 Stock performance visualizations
+- 🔍 Market trend analysis
+- 🐳 Dockerized for easy deployment
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## 🚀 Getting Started
 
-## Further help
+```bash
+git clone https://github.com/himanshu31shr/smp-front.git
+cd smp-front
+npm install
+npm start
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# Or with Docker
+docker-compose up
+```
+
+## 📄 License
+
+MIT © [Himanshu Shrivastava](https://github.com/himanshu31shr)
